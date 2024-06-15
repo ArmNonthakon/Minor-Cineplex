@@ -1,13 +1,31 @@
 package domain
 
-import "time"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type Theater struct {
-	TheaterId string `gorm:"primaryKey"`
-	StartAt   time.Time
-	EndAt     time.Time
-	IsFull    bool
-	Status    string
-	MovieId   string
-	Movie     Movie `gorm:"references:MovieID"`
+	TheaterId     uuid.UUID `gorm:"primaryKey"`
+	TheaterNumber string
+	MovieId       uuid.UUID `gorm:"size:191;index"`
+	StartTime     time.Time
+	SeatRow       int
+	SeatCol       int
+	Movie         Movie
+	Seats         []Seat
+}
+type InputTheater struct {
+	TheaterNumber string
+	MovieId       uuid.UUID
+	StartTime     time.Time
+	SeatRow       int
+	SeatCol       int
+}
+type InputNumber struct {
+	TheaterNumber string
+}
+type InputTheaterId struct {
+	TheaterId string
 }

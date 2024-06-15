@@ -1,8 +1,11 @@
 package domain
 
-type Users struct {
-	UserID   string `gorm:"primarykey"`
-	UserName string `gorm:"not null"`
-	Email    string `gorm:"unique"`
+import "github.com/google/uuid"
+
+type User struct {
+	UserId   uuid.UUID `gorm:"primaryKey"`
+	UserName string    `gorm:"unique"`
+	Email    string    `gorm:"unique"`
 	Password string
+	Tickets  []Ticket
 }

@@ -1,15 +1,22 @@
 package domain
 
-type Ticket struct {
-	TicketId string `gorm:"primaryKey"`
-	Status   string `gorm:"not null"`
-	UserID   string
-	Users    Users `gorm:"references:UserID"`
-}
+import "github.com/google/uuid"
 
-type TicketSeat struct {
-	TicketId   string
-	Ticket     Ticket `gorm:"references:TicketId"`
-	SeatNumber string
-	Seat       Seat `gorm:"references:SeatNumber"`
+type Ticket struct {
+	TicketId uuid.UUID `gorm:"primaryKey"`
+	Status   string    `gorm:"not null"`
+	UserId   uuid.UUID `gorm:"size:191;index"`
+	User     User
+	MovieId  uuid.UUID `gorm:"size:191;index"`
+	Movie    Movie
+	Seats    []Seat
+}
+type InputTicket struct {
+	UserId      uuid.UUID
+	MovieId     uuid.UUID
+	TheaterId   uuid.UUID
+	SeatReserve []string
+}
+type InputTicketId struct {
+	TicketId uuid.UUID
 }

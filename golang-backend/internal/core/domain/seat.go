@@ -1,9 +1,12 @@
 package domain
 
+import "github.com/google/uuid"
+
 type Seat struct {
-	SeatNumber string `gorm:"primaryKey"`
-	IsReserve  bool
-	Status     string
-	TheaterId  string
-	Theater    Theater `gorm:"references:TheaterID"`
+	SeatID     uuid.UUID `gorm:"primaryKey"`
+	SeatNumber string
+	TheaterId  uuid.UUID `gorm:"size:191;index"`
+	Theater    Theater
+	TicketId   uuid.UUID `gorm:"size:191;index"`
+	Ticket     Ticket
 }
