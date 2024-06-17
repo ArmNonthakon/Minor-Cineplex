@@ -10,4 +10,5 @@ type TheaterService interface {
 	ReqToGetTheater() ([]domain.Theater, error)
 	ReqToGetTheaterByNumber(number string) ([]domain.Theater, error)
 	ReqToGetTheaterById(id uuid.UUID) (domain.Theater, error)
+	ReqToDeleteTheater() error
 }

@@ -9,6 +9,7 @@ import (
 	"github.com/ArmNonthakon/Minor-Cineplex/internal/core/domain"
 	"github.com/gofiber/fiber/v2"
 
+	jwtware "github.com/gofiber/contrib/jwt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -18,7 +19,7 @@ func NewDB() (*gorm.DB, error) {
 	DB, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	return DB, err
 }
-func NewHttpHandler(db *gorm.DB) (adapters_http.MovieServiceIml, adapters_http.TheaterServiceIml, adapters_http.TicketServiceIml) {
+func NewHttpHandler(db *gorm.DB) (adapters_http.MovieServiceIml, adapters_http.TheaterServiceIml, adapters_http.TicketServiceIml, adapters_http.UserServiceIml) {
 	movieRepository := adapters_gorm.NewMovieGorm(db)
 	movieService := core.NewMovieRepository(movieRepository)
 	movieHttpHandler := adapters_http.NewMovieHttpHandler(movieService)
@@ -30,10 +31,19 @@ func NewHttpHandler(db *gorm.DB) (adapters_http.MovieServiceIml, adapters_http.T
 	ticketRepository := adapters_gorm.NewTicketGorm(db)
 	ticketService := core.NewTicketRepository(ticketRepository)
 	ticketHttpHandler := adapters_http.NewTicketHttpHandler(ticketService)
-	return *movieHttpHandler, *theaterHttpHandler, *ticketHttpHandler
+
+	userRepository := adapters_gorm.NewUserGorm(db)
+	userService := core.NewUserRepository(userRepository)
+	userHttpHandler := adapters_http.NewUserService(userService)
+	return *movieHttpHandler, *theaterHttpHandler, *ticketHttpHandler, *userHttpHandler
 }
 func main() {
 	app := fiber.New()
+	/*app.Use(cors.New(cors.Config{
+		AllowOrigins:     "http://localhost:5173/",
+		AllowHeaders:     "Origin, Content-Type, Accept",
+		AllowCredentials: true,
+	}))*/
 	db, err := NewDB()
 	if err != nil {
 		log.Panic(err)
@@ -44,25 +54,31 @@ func main() {
 		log.Panic(err)
 	}
 	log.Println("Tables migrated successfully")
-	movie, theater, ticket := NewHttpHandler(db)
+	movie, theater, ticket, user := NewHttpHandler(db)
 	app.Get("/getMovie", movie.GetAllMovie)
 	app.Get("/getMovieWithTheater", movie.GetAllMovieWithTheater)
 	app.Post("/getMovieByTitle", movie.GetMovieByTitle)
 	app.Post("/addMovie", movie.AddNewMovie)
+	app.Delete("/deleteMovieByTitle", movie.DeleteMovieByTitle)
 
 	app.Get("/getTheater", theater.GetTheater)
 	app.Post("/getTheaterByNumber", theater.GetTheaterByNumber)
 	app.Post("/addTheater", theater.AddTheater)
 	app.Post("/getTheaterById", theater.GetTheaterById)
+	app.Delete("/deleteTheater", theater.DeleteTheater)
 
+	app.Post("/register", user.Register)
+	app.Post("/login", user.Login)
+
+	app.Use(jwtware.New(jwtware.Config{
+		SigningKey:  jwtware.SigningKey{Key: []byte("MinorCineplex")},
+		TokenLookup: "cookie:token",
+	}))
+	if err != nil {
+		log.Panic(err)
+	}
 	app.Post("/reserveSeat", ticket.ReserveTicket)
 	app.Post("/getTicketById", ticket.GetTicketById)
 	log.Fatal(app.Listen(":3000"))
-	/*id := uuid.MustParse("bcb93213-8bc7-416d-a7d5-a59c74e41bfb")
-	var movie domain.Movie
-	db.Preload("Theaters").First(&movie, id) // Assume the movie with ID 1 exists
-
-	// Clear associations with theaters
-	db.Model(&movie).Association("Theaters").Clear()*/
 
 }

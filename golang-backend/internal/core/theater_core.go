@@ -54,3 +54,11 @@ func (r *TheaterRepositoryIml) ReqToGetTheaterById(id uuid.UUID) (domain.Theater
 	}
 	return data, nil
 }
+
+func (r *TheaterRepositoryIml) ReqToDeleteTheater() error {
+	err := r.repo.DeleteTheater()
+	if err != nil {
+		return err
+	}
+	return nil
+}

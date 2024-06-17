@@ -10,4 +10,5 @@ type MovieRepository interface {
 	ResAllMovieWithTheater() ([]domain.Movie, error)
 	ResMovieByTitle(title string) (domain.Movie, error)
 	CreateMovie(title string, duration float32, id uuid.UUID) error
+	DeleteMovieByTitle(title string) error
 }

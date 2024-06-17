@@ -1,6 +1,7 @@
 package adapters_http
 
 import (
+	"log"
 	"time"
 
 	"github.com/ArmNonthakon/Minor-Cineplex/internal/core/domain"
@@ -76,4 +77,19 @@ func (h *MovieServiceIml) AddNewMovie(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusNotAcceptable).JSON("Aready add movie " + input.Title)
 	}
 	return c.Status(fiber.StatusCreated).JSON("Success add new movie " + input.Title + " !!")
+}
+
+// Delete movie by title
+func (h *MovieServiceIml) DeleteMovieByTitle(c *fiber.Ctx) error {
+	input := domain.InputTitle{}
+	if err := c.BodyParser(&input); err != nil {
+		log.Panic(err)
+		return c.Status(fiber.StatusNotAcceptable).JSON("Error Input")
+	}
+	err := h.service.ReqToDeleteMovieByTitle(input.Title)
+	if err != nil {
+		log.Panic(err)
+		return c.Status(fiber.StatusNotFound).JSON(err)
+	}
+	return c.Status(fiber.StatusAccepted).JSON("DELETE SUCCESS!!")
 }

@@ -1,8 +1,11 @@
 package adapters_gorm
 
 import (
+	"fmt"
+
 	"github.com/ArmNonthakon/Minor-Cineplex/internal/core/domain"
 	ports "github.com/ArmNonthakon/Minor-Cineplex/internal/core/ports/user"
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
@@ -15,13 +18,15 @@ func NewUserGorm(db *gorm.DB) ports.UserRepository {
 }
 func (g *GormDB) CheckLogin(userName string) (string, error) {
 	data := domain.User{}
-	if result := g.db.Select("password").Find(&data, "userName= ?", userName); result.Error != nil {
+	if result := g.db.Select("password").Find(&data, "user_name= ?", userName); result.Error != nil {
+		fmt.Print(result.Error)
 		return "", result.Error
 	}
 	return data.Password, nil
 }
 func (g *GormDB) CreateUser(userName string, email string, password string) error {
 	data := domain.User{
+		UserId:   uuid.New(),
 		UserName: userName,
 		Email:    email,
 		Password: password,

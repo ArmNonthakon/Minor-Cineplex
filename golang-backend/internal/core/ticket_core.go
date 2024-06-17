@@ -19,10 +19,9 @@ func (r TicketRepositoryIml) ReqReserveSeat(input domain.InputTicket) (domain.Ti
 	newTicket := domain.Ticket{
 		TicketId: uuid.New(),
 		Status:   "Pending",
-		UserId:   input.UserId,
 		MovieId:  input.MovieId,
 	}
-	ticket, err := r.repo.CreateTicketAndReserveSeat(newTicket, input.TheaterId, input.SeatReserve)
+	ticket, err := r.repo.CreateTicketAndReserveSeat(newTicket, input.UserName, input.TheaterId, input.SeatReserve)
 	if err != nil {
 		return ticket, err
 	}

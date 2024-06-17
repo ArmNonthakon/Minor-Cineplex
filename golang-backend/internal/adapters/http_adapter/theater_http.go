@@ -67,6 +67,7 @@ func (h *TheaterServiceIml) GetTheaterById(c *fiber.Ctx) error {
 	if err != nil {
 		return c.SendStatus(fiber.StatusNotFound)
 	}
+
 	processedMovie := map[string]interface{}{
 		"MovieId":       theater.MovieId,
 		"MovieTitle":    theater.Movie.Title,
@@ -80,6 +81,7 @@ func (h *TheaterServiceIml) GetTheaterById(c *fiber.Ctx) error {
 			"TicketId":   seat.TicketId,
 		}
 	}
+
 	return c.Status(fiber.StatusFound).JSON(fiber.Map{
 		"TheaterId":          theater.TheaterId,
 		"TheaterNumber":      theater.TheaterNumber,
@@ -87,7 +89,18 @@ func (h *TheaterServiceIml) GetTheaterById(c *fiber.Ctx) error {
 		"TimeEnd":            theater.StartTime.Add(time.Hour * time.Duration(theater.Movie.Duration)),
 		"SeatMax":            theater.SeatCol * theater.SeatRow,
 		"SeatExist":          (theater.SeatCol * theater.SeatRow) - len(theater.Seats),
+		"SeatCol":            theater.SeatCol,
+		"SeatRow":            theater.SeatRow,
 		"Movies":             processedMovie,
 		"SeatAlreadyReserve": processSeats,
 	})
+}
+
+func (h *TheaterServiceIml) DeleteTheater(c *fiber.Ctx) error {
+	err := h.service.ReqToDeleteTheater()
+	if err != nil {
+		return c.SendStatus(fiber.StatusNotAcceptable)
+	}
+
+	return c.Status(fiber.StatusFound).JSON("DELETE ALL THEATER!!")
 }

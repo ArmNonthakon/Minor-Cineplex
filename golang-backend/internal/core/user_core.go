@@ -20,7 +20,8 @@ func (r UserRepositoryIml) GetInputToLogin(userName string, password string) err
 	if err != nil {
 		return err
 	}
-	if utils.CheckPasswordHash(password, hashPass) != 0 {
+	checkPass := false
+	if result := utils.CheckPasswordHash(password, hashPass); result == checkPass {
 		err := fmt.Errorf("PASSWORD IS WRONG")
 		return err
 	}

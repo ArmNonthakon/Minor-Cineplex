@@ -12,7 +12,7 @@ type Ticket struct {
 	Seats    []Seat
 }
 type InputTicket struct {
-	UserId      uuid.UUID
+	UserName    string
 	MovieId     uuid.UUID
 	TheaterId   uuid.UUID
 	SeatReserve []string

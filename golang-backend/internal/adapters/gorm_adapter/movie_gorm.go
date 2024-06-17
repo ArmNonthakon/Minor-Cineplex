@@ -50,3 +50,22 @@ func (g *GormDB) CreateMovie(title string, duration float32, id uuid.UUID) error
 	}
 	return nil
 }
+
+// Delete movie by title
+func (g *GormDB) DeleteMovieByTitle(title string) error {
+	var movie domain.Movie
+	if err := g.db.Where("title = ?", title).Preload("Theaters").First(&movie).Error; err != nil {
+		return err
+	}
+	if err := g.db.Model(&movie).Association("Theaters").Clear(); err != nil {
+		return err
+	}
+	if err := g.db.Model(&movie).Association("Tickets").Clear(); err != nil {
+		return err
+	}
+	if err := g.db.Delete(&movie).Error; err != nil {
+		return err
+	}
+
+	return nil
+}

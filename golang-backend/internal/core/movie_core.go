@@ -55,3 +55,13 @@ func (r MovieRepositoryIml) ReqToAddMovie(input domain.InputMovie) error {
 	}
 	return nil
 }
+
+// Delete move by title
+func (r MovieRepositoryIml) ReqToDeleteMovieByTitle(title string) error {
+	err := r.repo.DeleteMovieByTitle(strings.ToLower(title))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

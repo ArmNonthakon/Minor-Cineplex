@@ -10,4 +10,5 @@ type TheaterRepository interface {
 	ResTheater() ([]domain.Theater, error)
 	ResTheaterByNumber(number string) ([]domain.Theater, error)
 	ResTheaterById(id uuid.UUID) (domain.Theater, error)
+	DeleteTheater() error
 }

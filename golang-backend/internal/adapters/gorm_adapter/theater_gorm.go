@@ -41,3 +41,19 @@ func (g *GormDB) ResTheaterById(id uuid.UUID) (domain.Theater, error) {
 	}
 	return data, nil
 }
+
+// Delete Theater
+func (g *GormDB) DeleteTheater() error {
+	var theater domain.Theater
+	if err := g.db.First(&theater).Error; err != nil {
+		return err
+	}
+	if err := g.db.Model(&theater).Association("Seats").Clear(); err != nil {
+		return err
+	}
+	if err := g.db.Delete(&theater).Error; err != nil {
+		return err
+	}
+
+	return nil
+}

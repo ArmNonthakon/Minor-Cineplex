@@ -1,6 +1,8 @@
 package utils
 
 import (
+	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/ArmNonthakon/Minor-Cineplex/internal/core/domain"
@@ -37,6 +39,8 @@ func TheaterTranToJson(data []domain.Theater) []map[string]interface{} {
 			"TimeEnd":            theater.StartTime.Add(time.Hour * time.Duration(theater.Movie.Duration)),
 			"SeatMax":            theater.SeatCol * theater.SeatRow,
 			"SeatExist":          (theater.SeatCol * theater.SeatRow) - len(theater.Seats),
+			"SeatCol":            theater.SeatCol,
+			"SeatRow":            theater.SeatRow,
 			"Movies":             processedMovie,
 			"SeatAlreadyReserve": processSeats,
 		}
@@ -64,4 +68,14 @@ func MovieTranToJson(data []domain.Movie) []map[string]interface{} {
 		}
 	}
 	return processedData
+}
+func CalculateSeats(seatRow int, seatCol int, alreadyReserveSeat []string) []string {
+	allSeat := []string{}
+	for i := 0; i < seatRow; i++ {
+		s := strconv.Itoa(65 + i)
+		for j := 0; j < seatCol; j++ {
+			allSeat = append(allSeat, fmt.Sprintf(s+"%d", j))
+		}
+	}
+	return allSeat
 }

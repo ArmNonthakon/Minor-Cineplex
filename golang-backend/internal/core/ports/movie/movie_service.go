@@ -7,4 +7,5 @@ type MovieService interface {
 	ReqForAllMovieWithTheater() ([]domain.Movie, error)
 	ReqForMovieBYTitle(title string) (domain.Movie, error)
 	ReqToAddMovie(input domain.InputMovie) error
+	ReqToDeleteMovieByTitle(title string) error
 }

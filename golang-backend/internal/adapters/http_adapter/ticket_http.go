@@ -25,12 +25,12 @@ func (h *TicketServiceIml) ReserveTicket(c *fiber.Ctx) error {
 	}
 	ticket, err := h.service.ReqReserveSeat(input)
 	if err != nil {
-		return c.Status(fiber.StatusNotAcceptable).JSON("Aready reserve")
+		return c.Status(fiber.StatusNotAcceptable).JSON("Seats have already reserved or incorrect input!!")
 	}
 	resultSeat := utils.SliceSeat(ticket)
 	return c.Status(fiber.StatusAccepted).JSON(fiber.Map{
 		"TicketId":      ticket.TicketId,
-		"UserId":        ticket.UserId,
+		"UserName":      ticket.User.UserName,
 		"MovieTitle":    ticket.Movie.Title,
 		"Seats":         resultSeat,
 		"TheaterNumber": ticket.Seats[0].Theater.TheaterNumber,
@@ -54,7 +54,7 @@ func (h *TicketServiceIml) GetTicketById(c *fiber.Ctx) error {
 	resultSeat := utils.SliceSeat(ticket)
 	return c.Status(fiber.StatusAccepted).JSON(fiber.Map{
 		"TicketId":      ticket.TicketId,
-		"UserId":        ticket.UserId,
+		"UserName":      ticket.User.UserName,
 		"MovieTitle":    ticket.Movie.Title,
 		"Seats":         resultSeat,
 		"TheaterNumber": ticket.Seats[0].Theater.TheaterNumber,
