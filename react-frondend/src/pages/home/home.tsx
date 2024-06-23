@@ -51,7 +51,7 @@ export const Home = () => {
                     <p className='toppic-genre'>{item}</p>
                     <div className='section-home'>
                         <Swiper
-                            slidesPerView={5}
+                            slidesPerView={5.4}
                             spaceBetween={35}
                             className="mySwiper"
                         >

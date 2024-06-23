@@ -11,13 +11,13 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 
 	jwtware "github.com/gofiber/contrib/jwt"
-	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 func NewDB() (*gorm.DB, error) {
-	dsn := "root:Ninjaarm-2003@tcp(127.0.0.1:3306)/MinorCineplex?charset=utf8mb4&parseTime=True&loc=Local"
-	DB, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	dsn := "user=postgres.snpblspofpidyfveqljs password=Ninjaarm-20032546 host=aws-0-ap-southeast-1.pooler.supabase.com port=6543 dbname=minorcineplex sslmode=disable TimeZone=Asia/Shanghai"
+	DB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	return DB, err
 }
 func NewHttpHandler(db *gorm.DB) (adapters_http.MovieServiceIml, adapters_http.TheaterServiceIml, adapters_http.TicketServiceIml, adapters_http.UserServiceIml) {
@@ -41,9 +41,10 @@ func NewHttpHandler(db *gorm.DB) (adapters_http.MovieServiceIml, adapters_http.T
 func main() {
 	app := fiber.New()
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "http://localhost:5173/",
+		/*AllowOrigins:     "http://localhost:5173/",
 		AllowHeaders:     "Origin, Content-Type, Accept",
-		AllowCredentials: true,
+		AllowCredentials: true,*/
+		AllowMethods: "GET, POST, PUT, DELETE, OPTIONS",
 	}))
 	db, err := NewDB()
 	if err != nil {
@@ -80,6 +81,6 @@ func main() {
 	}
 	app.Post("/reserveSeat", ticket.ReserveTicket)
 	app.Post("/getTicketById", ticket.GetTicketById)
-	log.Fatal(app.Listen(":3000"))
+	app.Listen(":3000")
 
 }

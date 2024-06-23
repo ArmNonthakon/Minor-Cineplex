@@ -3,7 +3,7 @@ import axios from "axios"
 const url = '/api/'
 export const GetMovie = async () => {
     try {
-        const response = await axios.get(`${url}getMovieWithTheater`)
+        const response = await axios.get("/api/getMovieWithTheater")
         return response.data;
     } catch (error) {
         return error

@@ -1,5 +1,5 @@
 import './summary.scss'
-import { Seats } from '../seats/seats';
+
 
 export const Summary = () => {
     return (
