@@ -54,13 +54,16 @@ func (h *MovieServiceIml) GetMovieByTitle(c *fiber.Ctx) error {
 			"TheaterNumber": theater.TheaterNumber,
 			"MaxSeat":       theater.SeatCol * theater.SeatRow,
 			"TimeStart":     theater.StartTime,
-			"TimeEnd":       theater.StartTime.Add(time.Hour * time.Duration(data.Duration)),
+			"TimeEnd":       theater.StartTime.Add(time.Minute * time.Duration(data.Duration)),
 		}
 	}
 
 	return c.Status(fiber.StatusAccepted).JSON(fiber.Map{
 		"MovieId":      data.MovieId,
 		"MovieTitle":   data.Title,
+		"MovieGenre":   data.Genre,
+		"ReleaseDate":  data.ReleaseDate,
+		"Poster":       data.PosterUrl,
 		"TimeDuration": data.Duration,
 		"Theaters":     theaterData,
 	})

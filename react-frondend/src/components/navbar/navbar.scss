@@ -1,0 +1,51 @@
+.section-navbar{
+    color: white;
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    background-image: url("/bg-nav-d.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    .section-navbar-topic{
+        padding: 20px 8px;
+        display: flex;
+        justify-content: space-around;
+        align-items: end;
+        width: 400px;
+        font-weight: 500;
+        a{  
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            margin-right: 3px;
+            padding: 5px 8px;
+
+        }
+        a:hover {
+            color: rgb(239, 196, 109);
+            border-bottom: 3px solid rgb(239, 196, 109);
+            transition: border-bottom ;
+            transition-duration: 0.08s;
+        }
+    }
+    .section-navbar-auth{
+        display: flex;
+        justify-content: space-around;
+        align-items: end;
+        img:first-child{
+            margin-bottom: 15px;
+            margin-right: 25px;
+        }
+        img{
+            margin-bottom: 15px;
+        }
+        img:last-child{
+            color: white;
+            background-color: rgb(241, 241, 241);
+            border-radius: 30px;
+            margin-bottom: 10px;
+            margin-right: 25px;
+        }
+    }
+}

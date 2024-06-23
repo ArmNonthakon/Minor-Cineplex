@@ -49,7 +49,7 @@ func (r MovieRepositoryIml) ReqForMovieBYTitle(title string) (domain.Movie, erro
 
 // Add new movie
 func (r MovieRepositoryIml) ReqToAddMovie(input domain.InputMovie) error {
-	err := r.repo.CreateMovie(strings.ToLower(input.Title), input.Duration, uuid.New())
+	err := r.repo.CreateMovie(strings.ToLower(input.Title), input.Duration, uuid.New(), input.Genre, input.ReleaseDate, input.PosterUrl)
 	if err != nil {
 		return err
 	}

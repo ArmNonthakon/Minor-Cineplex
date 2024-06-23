@@ -36,7 +36,7 @@ func TheaterTranToJson(data []domain.Theater) []map[string]interface{} {
 			"TheaterId":          theater.TheaterId,
 			"TheaterNumber":      theater.TheaterNumber,
 			"TimeStart":          theater.StartTime,
-			"TimeEnd":            theater.StartTime.Add(time.Hour * time.Duration(theater.Movie.Duration)),
+			"TimeEnd":            theater.StartTime.Add(time.Minute * time.Duration(theater.Movie.Duration)),
 			"SeatMax":            theater.SeatCol * theater.SeatRow,
 			"SeatExist":          (theater.SeatCol * theater.SeatRow) - len(theater.Seats),
 			"SeatCol":            theater.SeatCol,
@@ -57,12 +57,15 @@ func MovieTranToJson(data []domain.Movie) []map[string]interface{} {
 				"TheaterNumber": theater.TheaterNumber,
 				"MaxSeat":       theater.SeatCol * theater.SeatRow,
 				"TimeStart":     theater.StartTime,
-				"TimeEnd":       theater.StartTime.Add(time.Hour * time.Duration(movie.Duration)),
+				"TimeEnd":       theater.StartTime.Add(time.Minute * time.Duration(movie.Duration)),
 			}
 		}
 		processedData[i] = map[string]interface{}{
 			"MovieId":      movie.MovieId,
 			"MovieTitle":   movie.Title,
+			"MovieGenre":   movie.Genre,
+			"Poster":       movie.PosterUrl,
+			"ReleaseDate":  movie.ReleaseDate,
 			"TimeDuration": movie.Duration,
 			"Theaters":     theaterData,
 		}

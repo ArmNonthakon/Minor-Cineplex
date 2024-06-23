@@ -1,6 +1,8 @@
 package adapters_gorm
 
 import (
+	"time"
+
 	"github.com/ArmNonthakon/Minor-Cineplex/internal/core/domain"
 	ports "github.com/ArmNonthakon/Minor-Cineplex/internal/core/ports/movie"
 	"github.com/google/uuid"
@@ -23,7 +25,7 @@ func (g *GormDB) ResAllMovie() ([]domain.OnlyMovie, error) {
 // Get movie with theater
 func (g *GormDB) ResAllMovieWithTheater() ([]domain.Movie, error) {
 	data := []domain.Movie{}
-	if result := g.db.Model(&domain.Movie{}).Preload("Theaters").Find(&data); result.Error != nil {
+	if result := g.db.Model(&domain.Movie{}).Order("release_date desc").Preload("Theaters").Find(&data); result.Error != nil {
 		return data, result.Error
 	}
 	return data, nil
@@ -39,11 +41,14 @@ func (g *GormDB) ResMovieByTitle(title string) (domain.Movie, error) {
 }
 
 // Add movie
-func (g *GormDB) CreateMovie(title string, duration float32, id uuid.UUID) error {
+func (g *GormDB) CreateMovie(title string, duration int, id uuid.UUID, genre string, date time.Time, url string) error {
 	data := domain.Movie{
-		MovieId:  id,
-		Title:    title,
-		Duration: duration,
+		MovieId:     id,
+		Title:       title,
+		Genre:       genre,
+		PosterUrl:   url,
+		ReleaseDate: date,
+		Duration:    duration,
 	}
 	if result := g.db.Create(data); result.Error != nil {
 		return result.Error

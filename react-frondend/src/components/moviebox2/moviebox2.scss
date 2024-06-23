@@ -1,0 +1,56 @@
+.section-movie_theater-movie {
+    margin-bottom: 20px;
+    display: flex;
+    width: 55%;
+    height: 270px;
+    background-color: rgb(54, 54, 54);
+    border-radius: 20px;
+    .section-movie_theater-movie-poster {
+        background-size: 100%;
+        background-repeat: no-repeat;
+        border-radius: 20px;
+        height: 100%;
+        width: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .section-movie_theater-movie-describe {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        border-radius: 10px;
+        color: white;
+        padding: 15px;
+        width: 100%;
+        div.describe{
+            display: flex;
+            align-items: center;
+            h3{
+                margin-left: 10px;
+            }
+        }
+        .section-movie_theater-movie-round {
+            display: grid;
+            grid-template-columns: repeat(4, 20%);
+            row-gap: 8px;
+            column-gap: 2%;
+            margin-top: 20px;
+
+            div {
+                color: black;
+                font-size: 19px;
+                font-weight: 800;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 40px;
+                background-color: rgb(235, 194, 78);
+                border-radius: 5px;
+            }
+        }
+    }
+
+}

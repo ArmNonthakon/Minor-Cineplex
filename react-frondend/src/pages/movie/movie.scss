@@ -1,0 +1,18 @@
+.section-movie-topic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  p {
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+  }
+}
+.section-movie {
+  display: grid;
+  grid-template-columns: repeat(5, 16%);
+  column-gap: 3%;
+  row-gap: 20px;
+  justify-content: center;
+}

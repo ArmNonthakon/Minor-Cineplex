@@ -86,7 +86,7 @@ func (h *TheaterServiceIml) GetTheaterById(c *fiber.Ctx) error {
 		"TheaterId":          theater.TheaterId,
 		"TheaterNumber":      theater.TheaterNumber,
 		"TimeStart":          theater.StartTime,
-		"TimeEnd":            theater.StartTime.Add(time.Hour * time.Duration(theater.Movie.Duration)),
+		"TimeEnd":            theater.StartTime.Add(time.Minute * time.Duration(theater.Movie.Duration)),
 		"SeatMax":            theater.SeatCol * theater.SeatRow,
 		"SeatExist":          (theater.SeatCol * theater.SeatRow) - len(theater.Seats),
 		"SeatCol":            theater.SeatCol,

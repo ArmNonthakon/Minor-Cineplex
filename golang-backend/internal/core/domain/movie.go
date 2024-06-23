@@ -1,13 +1,20 @@
 package domain
 
-import "github.com/google/uuid"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type Movie struct {
-	MovieId  uuid.UUID `gorm:"primaryKey"`
-	Title    string    `gorm:"unique"`
-	Duration float32
-	Theaters []Theater
-	Tickets  []Ticket
+	MovieId     uuid.UUID `gorm:"primaryKey"`
+	Title       string    `gorm:"unique"`
+	Genre       string
+	PosterUrl   string
+	ReleaseDate time.Time
+	Duration    int
+	Theaters    []Theater
+	Tickets     []Ticket
 }
 
 type OnlyMovie struct {
@@ -22,8 +29,11 @@ type MovieWithTheater struct {
 }
 
 type InputMovie struct {
-	Title    string
-	Duration float32
+	Title       string
+	PosterUrl   string
+	Duration    int
+	Genre       string
+	ReleaseDate time.Time
 }
 type InputTitle struct {
 	Title string

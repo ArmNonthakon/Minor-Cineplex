@@ -8,6 +8,7 @@ import (
 	"github.com/ArmNonthakon/Minor-Cineplex/internal/core"
 	"github.com/ArmNonthakon/Minor-Cineplex/internal/core/domain"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 
 	jwtware "github.com/gofiber/contrib/jwt"
 	"gorm.io/driver/mysql"
@@ -39,11 +40,11 @@ func NewHttpHandler(db *gorm.DB) (adapters_http.MovieServiceIml, adapters_http.T
 }
 func main() {
 	app := fiber.New()
-	/*app.Use(cors.New(cors.Config{
+	app.Use(cors.New(cors.Config{
 		AllowOrigins:     "http://localhost:5173/",
 		AllowHeaders:     "Origin, Content-Type, Accept",
 		AllowCredentials: true,
-	}))*/
+	}))
 	db, err := NewDB()
 	if err != nil {
 		log.Panic(err)

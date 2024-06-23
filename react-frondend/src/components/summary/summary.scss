@@ -1,0 +1,80 @@
+.section-summary {
+    position: absolute;
+    right: 80px;
+    top: 120px;
+
+    .section-summary-box {
+        border: 2px solid white;
+        color: white;
+        border-radius: 20px;
+        width: 400px;
+        height: 380px;
+        .section-summary-movie{
+            margin: 10px;
+            display: flex;
+            .section-summary-poster{
+                width: 120px;
+                height: 160px;
+                border-radius: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgb(143, 143, 143);
+                margin-right: 20px;
+            }
+            .section-summary-describe{
+                margin-top: 15px;
+                font-size: 17px;
+                .summary-describe{
+                    margin-top: 20px;
+                    display: flex;
+                    p{
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+        .section-summary-round{ 
+            margin: 0px 20px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            p{
+                font-size: 19px;
+            }
+            div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 18px;
+                font-weight: 600;
+                color: black;
+                border-radius: 5px;
+                width: 100px;
+                background-color: aliceblue;
+                height: 40px;
+            }
+        }
+        .section-summary-seats{
+            font-size: 19px;
+            margin: 0px 20px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .section-summary-button{
+            margin: 0px 20px;
+            margin-top: 15px;
+            width: 100%;
+            button{
+                border-radius: 10px;
+                width: 90%;
+                height: 40px;
+                background-color: rgb(252, 200, 68);
+            }
+        }
+        
+    }
+}
