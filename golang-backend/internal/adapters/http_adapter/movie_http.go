@@ -54,6 +54,8 @@ func (h *MovieServiceIml) GetMovieByTitle(c *fiber.Ctx) error {
 			"TheaterNumber": theater.TheaterNumber,
 			"MaxSeat":       theater.SeatCol * theater.SeatRow,
 			"TimeStart":     theater.StartTime,
+			"SeatCol":       theater.SeatCol,
+			"SeatRow":       theater.SeatRow,
 			"TimeEnd":       theater.StartTime.Add(time.Minute * time.Duration(data.Duration)),
 		}
 	}

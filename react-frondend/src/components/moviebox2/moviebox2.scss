@@ -38,7 +38,9 @@
             column-gap: 2%;
             margin-top: 20px;
 
-            div {
+            
+            .movie-time {
+                cursor: pointer;
                 color: black;
                 font-size: 19px;
                 font-weight: 800;
@@ -49,7 +51,16 @@
                 height: 40px;
                 background-color: rgb(235, 194, 78);
                 border-radius: 5px;
-            }
+                transition: background-color 0.3s;
+              
+                &:hover {
+                  background-color: rgb(240, 210, 150);
+                }
+              
+                &.active {
+                  background-color: rgb(234, 205, 125);
+                }
+              }
         }
     }
 

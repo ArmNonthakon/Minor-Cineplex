@@ -14,13 +14,10 @@
             display: flex;
             .section-summary-poster{
                 width: 120px;
-                height: 160px;
+                height: 180px;
                 border-radius: 20px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: rgb(143, 143, 143);
                 margin-right: 20px;
+                background-size: cover;
             }
             .section-summary-describe{
                 margin-top: 15px;
