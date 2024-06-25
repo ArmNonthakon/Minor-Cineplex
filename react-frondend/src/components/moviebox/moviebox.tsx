@@ -1,7 +1,8 @@
 
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './moviebox.scss'
+import { Link } from 'react-router-dom'
 interface Input {
     title: string
     duration: number
@@ -16,8 +17,11 @@ export const MovieBox = ({ title, duration, poster, genre, date }: Input) => {
         const month = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]  
         return <h4>{tDate.getDay()} {month[tDate.getMonth()]} {tDate.getFullYear()}</h4>
     }
+    useEffect(()=>{
+        console.log()
+    })
     return (<>
-        <div className='section-moviebox' onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
+        <Link to={`/movie/${title.replace(/ /g,'_')}`} className='section-moviebox' onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
             <div className='movie-poster'
                 style={{
                     backgroundImage: `url("/movie/${poster}")`,
@@ -34,6 +38,6 @@ export const MovieBox = ({ title, duration, poster, genre, date }: Input) => {
                 </div>
             </div>
 
-        </div>
+        </Link>
     </>)
 }

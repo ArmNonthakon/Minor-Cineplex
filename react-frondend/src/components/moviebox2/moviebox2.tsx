@@ -6,10 +6,27 @@ interface input {
     genre : string
     duration: number
     poster : string
+    theater: []
 }
 
 
-export const MovieBox2 = ({title,genre,duration,poster}:input) => {
+export const MovieBox2 = ({title,genre,duration,poster,theater}:input) => {
+    const TheaterTime = ()=>{
+        const theaterTime:any = []  
+        theater.map((e:any)=>{
+            const date = new Date(e.TimeStart)
+            if (date.getMinutes() < 10){
+                theaterTime.push(date.getHours() + ":0" + date.getMinutes())
+            }else{
+                theaterTime.push(date.getHours() + ":" + date.getMinutes())
+            }     
+        })
+        theaterTime.sort()
+        return theaterTime.map((e:any)=>(
+            <div>{e}</div>
+        ))
+        
+    }
     return (
         <>
             <div className='section-movie_theater-movie'>
@@ -26,8 +43,7 @@ export const MovieBox2 = ({title,genre,duration,poster}:input) => {
                         <h3>{duration} minute</h3>
                     </div>
                     <div className='section-movie_theater-movie-round'>
-                        <div>12.30</div>
-                        <div>14.50</div>
+                        <TheaterTime/>
                     </div>
                 </div>
 
