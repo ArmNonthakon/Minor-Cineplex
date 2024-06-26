@@ -1,56 +1,85 @@
-import { useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import './seats.scss';
+import { checkArray } from '../../utils/filter';
 
 interface Input {
     row: number;
     col: number;
+    sendSeat : (seat:string[])=> void
 }
 
-const LoopRow = ({ row }: { row: number }) => {
+const LoopRow = memo(({ row }: { row: number }) => {
     let result = [];
     for (let i = 0; i < row; i++) {
         let text: string = String.fromCharCode(65 + i);
         result.push(<h4 key={i}>{text}</h4>);
     }
     return <>{result}</>;
-};
+});
 
-const LoopSeat = ({ row, col }: { row: number, col: number }) => {
-    let h = [];
-    let already = "";
-    for (let i = 0; i < row; i++) {
-        let acii = 65 + i;
-        let text: string = String.fromCharCode(acii);
-        for (let j = 1; j <= col; j++) {
-            let seatnumber: string = text + j;
-            if (seatnumber === already) {
-                h.push(
-                    <img
-                        className='seat-user'
-                        key={seatnumber}
-                        src="/user_seat.png"
-                        width="31px"
-                        alt=""
-                    />
-                );
-            } else {
-                h.push(
-                    <img
-                        key={seatnumber}
-                        src="/sofa.png"
-                        width="30px"
-                        alt=""
-                    />
-                );
+
+export const Seats = memo(({ row, col ,sendSeat}: Input) => {
+    console.log('recomponent seats')
+    const [seatReserving, setSeatReserving] = useState<string[]>([])
+    const LoopSeat = ({ row, col }: { row: number, col: number }) => {
+        let h = [];
+        let already: string[] = [];
+        for (let i = 0; i < row; i++) {
+            let acii = 65 + i;
+            let text: string = String.fromCharCode(acii);
+            for (let j = 1; j <= col; j++) {
+                let seatnumber: string = text + j;
+                if (checkArray(seatnumber, already) && !checkArray(seatnumber, seatReserving)) {
+                    h.push(
+                        <img
+                            className='seat-user'
+                            key={seatnumber}
+                            src="/user_seat.png"
+                            width="31px"
+                            alt=""
+                        />
+                    );
+                }
+                else if (checkArray(seatnumber, seatReserving)) {
+                    h.push(
+                        <img
+                            className='seat-reserve'
+                            key={seatnumber}
+                            src="/check.png"
+                            width="24px"
+                            alt=""
+                            onClick={() => {
+                                setSeatReserving(oldValues => {
+                                    let newData = oldValues.filter(data => data !== seatnumber)
+                                    sendSeat(newData)
+                                    return newData
+                                })
+
+                            }}
+                        />
+                    );
+                }
+                else {
+                    h.push(
+                        <img
+                            key={seatnumber}
+                            src="/sofa.png"
+                            width="30px"
+                            alt=""
+                            onClick={() => {
+                                sendSeat([...seatReserving,seatnumber])
+                                setSeatReserving([...seatReserving, seatnumber])
+                                
+                            }}
+                        />
+                    );
+                }
             }
         }
-    }
-    return <>{h}</>;
-};
-
-export const Seats = ({ row, col }: Input) => {
+        return <>{h}</>;
+    };
     useEffect(() => {
-        // You can add any side-effects or initialization code here if needed.
+       
     }, []);
 
     return (
@@ -68,4 +97,4 @@ export const Seats = ({ row, col }: Input) => {
             </div>
         </div>
     );
-};
+});

@@ -14,6 +14,7 @@ interface input {
 
 export const MovieBox2 = ({ title, genre, duration, poster, theater, ondata }: input) => {
     const [theaterId, setTheaterId] = useState("")
+    const [isClickTheater, setIsclickTheater] = useState(false)
     const TheaterTime = () => {
         const theaterTime: any = []
         theater.map((e: any) => {
@@ -29,10 +30,23 @@ export const MovieBox2 = ({ title, genre, duration, poster, theater, ondata }: i
             <div
                 key={e.id}
                 className={`movie-time ${theaterId === e.id ? 'active' : ''}`}
-
                 onClick={() => {
-                    ondata(e.time, e.id)
-                    setTheaterId(e.id)
+                    if (isClickTheater == false) {
+                        ondata(e.time, e.id)
+                        setTheaterId(e.id)
+                        setIsclickTheater(true)
+                    }
+                    else if(isClickTheater == true && theaterId == e.id) {
+                        ondata("", "")
+                        setTheaterId("")
+                        setIsclickTheater(false)
+                    }
+                    else{
+                        ondata(e.time, e.id)
+                        setTheaterId(e.id)
+                        setIsclickTheater(true)
+                    }
+
                 }
 
                 }>{e.time}</div>

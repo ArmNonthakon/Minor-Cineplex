@@ -5,9 +5,10 @@ interface inputSummary{
     duration: number
     time : string
     poster:string
+    seatReserve : string[]
 }
 
-export const Summary = ({title,poster,duration,time}:inputSummary) => {
+export const Summary = ({title,poster,duration,time,seatReserve}:inputSummary) => {
     return (
         <>
 
@@ -39,10 +40,12 @@ export const Summary = ({title,poster,duration,time}:inputSummary) => {
                     </div>
                     <div className="section-summary-seats">
                         <h4>
-                            {/*C1,C2,C3 */} 
+                            {seatReserve.map((e)=>(
+                                e + " "
+                            ))} 
                         </h4>
                         <h4>
-                            {/*600*/}
+                            {seatReserve.length * 220}
                         </h4>
                     </div>
                     <div className='section-summary-button'>
