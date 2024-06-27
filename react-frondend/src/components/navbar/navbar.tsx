@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import './navbar.scss'
 
 export const Navbar = () => {
+    
     return (
         <>
             <div className='section-navbar'>
@@ -14,7 +15,7 @@ export const Navbar = () => {
                 <div className='section-navbar-auth'>
                     <img src="/search.png" width="28px" alt="" />
                     <img src="/tally-1.png" width="28px" alt="" />
-                    <img src="/user.svg" width="40px" alt="" />
+                    <Link to={"/login"}><img src="/user.svg" width="40px" alt="" /></Link>
 
                 </div>
 

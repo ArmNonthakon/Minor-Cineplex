@@ -1,0 +1,146 @@
+.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1{
+        text-decoration: underline;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        div {
+            width: 75%;
+            position: relative;
+            margin-top: 20px;
+            img {
+                width: 25px;
+                position: absolute;
+                left: 7px;
+                top: 7px;
+            }
+
+            input {
+                width: 90%;
+                height: 40px;
+                border: none;
+                border-bottom: 3px solid black;
+                padding-left: 50px;
+            }
+        }
+
+        
+        .register-button{
+            width: 75%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-left: 30px;
+            button {
+                width: 80%;
+                height: 40px;
+                background-color: rgb(240, 70, 70);
+                border: none;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: 600;
+            }
+            button:hover{
+                background-color: rgb(254, 86, 86);
+            }
+            button:active{
+                background-color: rgb(247, 155, 155);
+            }
+            p{
+                margin-top: 10px;
+                a{
+                    color: rgb(240, 70, 70);
+                }
+                a:hover{
+                    color: rgb(180, 19, 19);;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 550px){
+    .register{
+        form{
+            align-items: start;
+            div{
+                width: 90%;
+            }
+            
+        }
+    }
+}
+@media only screen and (max-width: 450px){
+    .register{
+        h1{
+            font-size: 22px;
+        }
+        form{
+            align-items: start;
+            div{
+                width: 80%;
+                img{
+                    width: 16px;
+                }
+                input{
+                    height: 20px;
+                    font-size: 14px;
+                    padding-top: 3px;
+                }
+            }
+            div.register-button{
+                padding-left: 20px;
+                width: 80%;
+                button{
+                    height: 30px;
+                    font-size: 14px;
+                }
+                p{
+                    font-size: 14px;
+                    margin-top: 10px;
+                }
+            }
+            
+        }
+        
+        
+    }
+}
+@media only screen and (max-width: 360px){
+    .register{
+        h1{
+            font-size: 22px;
+        }
+        form{
+            align-items: start;
+            div{
+                width: 80%;
+                img{
+                    width: 16px;
+                }
+                input{
+                    height: 20px;
+                    font-size: 14px;
+                    padding-top: 3px;
+                }
+            }
+            div.register-button{
+                padding-left: 10px;
+                width: 90%;
+                
+            }
+            
+        }
+        
+        
+    }
+}

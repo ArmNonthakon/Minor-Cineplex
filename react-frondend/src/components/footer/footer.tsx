@@ -3,17 +3,37 @@ import './footer.scss'
 const Footer = () => {
     return (
         <>
-            <div className='footer'>
+            <div className='section-footer'>
+                <div className='section-footer-one'>
+                    <div>
+                        <h2>THEATER</h2>
+                        <p>ALL THEATER</p>
+                        <p>SOME THEATER</p>
+                    </div>
+                    <div>
+                        <h2>MOVIES</h2>
+                        <p>NOW SHOWING</p>
+                        <p>COMMING SOON</p>
+                    </div>
+                    <div>
+                        <h2>AUTH</h2>
+                        <p>LOGIN</p>
+                        <p>REGISTER</p>
+                    </div>
+                    <div>
+                        <h2>CONTACT ME</h2>
+                        <a href="https://www.facebook.com/people/Nonthakon-Tansamai/pfbid0zB9xYyGJNGkkPzwe2Wfsm6jaP5Yd3zLxwwU3C7hHbtNnHAqVhzWEfPJCjfHCKTSdl/">FACEBOOK</a>
+                        <a href="https://www.instagram.com/3armm__9">INSTARGRAM</a>
+                        <a href="https://www.linkedin.com/in/nonthakon-tansamai-09986430a">LINKEDIN</a>
+                        <a href="https://github.com/ArmNonthakon">GITHUB</a>
+                    </div>
+                    
 
-                <div className='footer-social'>
-                    <h3>Contact me</h3>
-                    <a href="https://www.facebook.com/people/Nonthakon-Tansamai/pfbid0zB9xYyGJNGkkPzwe2Wfsm6jaP5Yd3zLxwwU3C7hHbtNnHAqVhzWEfPJCjfHCKTSdl/"><img src="/footer/facebook (2).png" width="35px" alt="" /></a>
-                    <a href="https://www.instagram.com/3armm__9"><img src="/footer/instagram (1).png" width="35px" alt="" /></a>
-                    <a href="https://www.linkedin.com/in/nonthakon-tansamai-09986430a"><img src="/footer/linkedin.png" width="35px" alt="" /></a>
-                    <a href="https://github.com/ArmNonthakon"><img src="/footer/github (1).png" width="35px" alt="" /></a>
                 </div>
-                <div className='footer-copyright'><p>
-                    Copyright ©2024; Designed by ArmNonthakon
+                <div className='section-footer-copyright'>
+                    <img src="/logo.png" alt="" />
+                <p>
+                    copyright ©2024; Designed by ArmNonthakon
                 </p></div>
             </div>
         </>
