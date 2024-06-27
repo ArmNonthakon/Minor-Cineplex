@@ -32,6 +32,7 @@ const Footer = () => {
                 </div>
                 <div className='section-footer-copyright'>
                     <img src="/logo.png" alt="" />
+                    <p>Reference  from <a href="https://www.majorcineplex.com/home">Major cineplex</a></p>
                 <p>
                     copyright ©2024; Designed by ArmNonthakon
                 </p></div>

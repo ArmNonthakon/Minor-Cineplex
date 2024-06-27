@@ -57,10 +57,20 @@
             margin-top: 20px;
         }
         p{
-            font-size: 16px;
-            margin-top: 20px;
+            font-size: 17px;
+            margin-top: 30px;
             margin-bottom: 20px;
             margin-left: 10px;
+            a{
+                color: rgb(247, 53, 53);
+            }
+            a:hover{
+                color:rgb(245, 125, 125);
+            }
+        }
+        p:last-child{
+            font-size: 16px;
+            margin-top: 5px;
         }
     }
 }
