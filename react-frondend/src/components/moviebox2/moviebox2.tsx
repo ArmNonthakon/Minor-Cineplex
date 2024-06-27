@@ -20,12 +20,11 @@ export const MovieBox2 = ({ title, genre, duration, poster, theater, ondata }: i
         theater.map((e: any) => {
             const date = new Date(e.TimeStart)
             if (date.getMinutes() < 10) {
-                theaterTime.push({ time: date.getHours() + ":0" + date.getMinutes(), id: e.TheaterId, tNumber: e.TheaterNumber })
+                theaterTime.push({ time: date.getHours() + ":0" + date.getMinutes(), id: e.TheaterId, tNumber: e.TheaterNumber ,forsort: date.getTime()})
             } else {
-                theaterTime.push({ time: date.getHours() + ":" + date.getMinutes(), id: e.TheaterId, tNumber: e.TheaterNumber })
+                theaterTime.push({ time: date.getHours() + ":" + date.getMinutes(), id: e.TheaterId, tNumber: e.TheaterNumber ,forsort: date.getTime()})
             }
         })
-        theaterTime.sort()
         return theaterTime.map((e: any) => (
             <div
                 key={e.id}
