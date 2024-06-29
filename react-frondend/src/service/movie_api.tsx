@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const url = 'http://127.0.0.1:3000/'
+const url = '/api/'
 export const GetMovie = async () => {
     try {
         const response = await axios.get(`${url}getMovieWithTheater`)
