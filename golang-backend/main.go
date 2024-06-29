@@ -80,7 +80,7 @@ func main() {
 
 	app.Post("/register", user.Register)
 	app.Post("/login", user.Login)
-	app.Post("/reserveSeat", ticket.ReserveTicket)
+
 	app.Use(jwtware.New(jwtware.Config{
 		SigningKey:  jwtware.SigningKey{Key: []byte("MinorCineplex")},
 		TokenLookup: "cookie:token",
@@ -88,7 +88,7 @@ func main() {
 	if err != nil {
 		log.Panic(err)
 	}
-
+	app.Post("/reserveSeat", ticket.ReserveTicket)
 	app.Post("/getTicketById", ticket.GetTicketById)
 	app.Listen(":3000")
 
