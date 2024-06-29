@@ -48,15 +48,21 @@ func (h *MovieServiceIml) GetMovieByTitle(c *fiber.Ctx) error {
 		return c.SendStatus(fiber.StatusNotFound)
 	}
 	theaterData := make([]map[string]interface{}, len(data.Theaters))
-	for j, theater := range data.Theaters {
-		theaterData[j] = map[string]interface{}{
-			"TheaterId":     theater.TheaterId,
-			"TheaterNumber": theater.TheaterNumber,
-			"MaxSeat":       theater.SeatCol * theater.SeatRow,
-			"TimeStart":     theater.StartTime,
-			"SeatCol":       theater.SeatCol,
-			"SeatRow":       theater.SeatRow,
-			"TimeEnd":       theater.StartTime.Add(time.Minute * time.Duration(data.Duration)),
+	for i, theater := range data.Theaters {
+		var seatReserve []string
+		for _, seat := range theater.Seats {
+			seatReserve = append(seatReserve, seat.SeatNumber)
+		}
+
+		theaterData[i] = map[string]interface{}{
+			"TheaterId":          theater.TheaterId,
+			"TheaterNumber":      theater.TheaterNumber,
+			"MaxSeat":            theater.SeatCol * theater.SeatRow,
+			"TimeStart":          theater.StartTime,
+			"SeatCol":            theater.SeatCol,
+			"SeatRow":            theater.SeatRow,
+			"TimeEnd":            theater.StartTime.Add(time.Minute * time.Duration(data.Duration)),
+			"SeatAlreadyReserve": seatReserve,
 		}
 	}
 

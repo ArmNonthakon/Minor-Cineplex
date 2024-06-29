@@ -50,10 +50,10 @@ func NewHttpHandler(db *gorm.DB) (adapters_http.MovieServiceIml, adapters_http.T
 func main() {
 	app := fiber.New()
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "http://localhost:5173/",
+		/*AllowOrigins:     "http://localhost:5173/",
 		AllowHeaders:     "Origin, Content-Type, Accept",
-		AllowCredentials: true,
-		AllowMethods:     "GET, POST, PUT, DELETE, OPTIONS",
+		AllowCredentials: true,*/
+		AllowMethods: "GET, POST, PUT, DELETE, OPTIONS",
 	}))
 	db, err := NewDB("postgres")
 	if err != nil {
@@ -80,7 +80,7 @@ func main() {
 
 	app.Post("/register", user.Register)
 	app.Post("/login", user.Login)
-
+	app.Post("/reserveSeat", ticket.ReserveTicket)
 	app.Use(jwtware.New(jwtware.Config{
 		SigningKey:  jwtware.SigningKey{Key: []byte("MinorCineplex")},
 		TokenLookup: "cookie:token",
@@ -88,7 +88,7 @@ func main() {
 	if err != nil {
 		log.Panic(err)
 	}
-	app.Post("/reserveSeat", ticket.ReserveTicket)
+
 	app.Post("/getTicketById", ticket.GetTicketById)
 	app.Listen(":3000")
 

@@ -5,6 +5,7 @@ import { checkArray } from '../../utils/filter';
 interface Input {
     row: number;
     col: number;
+    seats: string[]
     sendSeat : (seat:string[])=> void
 }
 
@@ -18,12 +19,12 @@ const LoopRow = memo(({ row }: { row: number }) => {
 });
 
 
-export const Seats = memo(({ row, col ,sendSeat}: Input) => {
+export const Seats = memo(({ row, col ,sendSeat,seats}: Input) => {
     console.log('recomponent seats')
     const [seatReserving, setSeatReserving] = useState<string[]>([])
     const LoopSeat = ({ row, col }: { row: number, col: number }) => {
         let h = [];
-        let already: string[] = [];
+        let already: string[] = seats;
         for (let i = 0; i < row; i++) {
             let acii = 65 + i;
             let text: string = String.fromCharCode(acii);
@@ -35,7 +36,6 @@ export const Seats = memo(({ row, col ,sendSeat}: Input) => {
                             className='seat-user'
                             key={seatnumber}
                             src="/user_seat.png"
-                            width="31px"
                             alt=""
                         />
                     );
@@ -46,7 +46,6 @@ export const Seats = memo(({ row, col ,sendSeat}: Input) => {
                             className='seat-reserve'
                             key={seatnumber}
                             src="/check.png"
-                            width="24px"
                             alt=""
                             onClick={() => {
                                 setSeatReserving(oldValues => {

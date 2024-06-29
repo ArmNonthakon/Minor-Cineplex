@@ -7,15 +7,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func (g *GormDB) ReserveSeat(number string, theaterId uuid.UUID, ticketId uuid.UUID) error {
-	checkSeat := []domain.Seat{}
-	if result := g.db.First(&checkSeat, "theater_id = ? and number = ?", theaterId, number); result.Error != nil {
-		return result.Error
-	}
-	if len(checkSeat) != 0 {
-		err := fmt.Errorf("SEAT NUMBER " + number + " ALREADY RESERVE!!")
-		return err
-	}
+func (g *GormDB) ReserveSeat(number string, theaterId uuid.UUID, ticketId uuid.UUID) bool {
 	seat := domain.Seat{
 		SeatID:     uuid.New(),
 		SeatNumber: number,
@@ -23,7 +15,15 @@ func (g *GormDB) ReserveSeat(number string, theaterId uuid.UUID, ticketId uuid.U
 		TicketId:   ticketId,
 	}
 	if result := g.db.Create(seat); result.Error != nil {
-		return result.Error
+		fmt.Print("g.db.Create()")
+		return false
 	}
-	return nil
+	return true
+}
+func (g *GormDB) CheckSeat(number string, theaterId uuid.UUID) bool {
+	seat := &domain.Seat{}
+	if result := g.db.First(&seat, "theater_id = ? and seat_number = ?", theaterId, number); result.Error != nil {
+		return true
+	}
+	return false
 }

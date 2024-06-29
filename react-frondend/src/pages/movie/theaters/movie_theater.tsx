@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 interface MovieData {
+    MovieId: string
     MovieTitle: string;
     Poster: string;
     TimeDuration: number;
@@ -44,13 +45,16 @@ export const Movie_theater = () => {
     const CurrentSeats = useCallback(() => {
         let seatCol = 0;
         let seatRow = 0;
+        let seatReserve:any[] = []
         data?.Theaters.forEach((e: any) => {
             if (e.TheaterId === currentTheater) {
                 seatCol = e.SeatCol;
                 seatRow = e.SeatRow;
+                seatReserve = e.SeatAlreadyReserve == null ? [] : e.SeatAlreadyReserve
             }
         });
-        return <Seats row={seatRow} col={seatCol} sendSeat={setSeatsReserve} />;
+        console.log(data?.Theaters)
+        return <Seats row={seatRow} col={seatCol} seats={seatReserve}  sendSeat={setSeatsReserve} />;
     }, [data, currentTheater, setSeatsReserve]);
 
     useEffect(() => {
@@ -72,6 +76,8 @@ export const Movie_theater = () => {
             <CurrentSeats />
             {data && (
                 <Summary
+                    MovieId={data.MovieId}
+                    TheaterId={currentTheater}
                     title={data.MovieTitle}
                     poster={data.Poster}
                     duration={data.TimeDuration}

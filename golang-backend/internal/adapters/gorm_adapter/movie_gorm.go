@@ -34,7 +34,7 @@ func (g *GormDB) ResAllMovieWithTheater() ([]domain.Movie, error) {
 // Get movie sort by title
 func (g *GormDB) ResMovieByTitle(title string) (domain.Movie, error) {
 	data := domain.Movie{}
-	if result := g.db.Model(&domain.Movie{}).Preload("Theaters").Find(&data, "title = ?", title); result.Error != nil {
+	if result := g.db.Model(&domain.Movie{}).Preload("Theaters.Seats").Find(&data, "title = ?", title); result.Error != nil {
 		return data, result.Error
 	}
 	return data, nil

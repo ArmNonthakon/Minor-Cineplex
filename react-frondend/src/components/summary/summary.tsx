@@ -1,6 +1,10 @@
+import { useEffect } from 'react'
+import { ReserveSeat } from '../../service/ticket_api'
 import './summary.scss'
 
 interface inputSummary{
+    MovieId: string
+    TheaterId: string
     title : string
     duration: number
     time : string
@@ -8,7 +12,24 @@ interface inputSummary{
     seatReserve : string[]
 }
 
-export const Summary = ({title,poster,duration,time,seatReserve}:inputSummary) => {
+export const Summary = ({MovieId,TheaterId,title,poster,duration,time,seatReserve}:inputSummary) => {
+    const callApiReserve = async ()=>{
+        try {
+            const response = await ReserveSeat(MovieId,TheaterId,seatReserve);
+            if (response == 202){
+                console.log("Success")
+                location.reload()
+            }
+            else{
+                console.log("Err")
+            }
+        } catch (error) {
+            throw error
+        }
+    }
+    useEffect(()=>{
+        
+    },[])
     return (
         <>
 
@@ -49,7 +70,7 @@ export const Summary = ({title,poster,duration,time,seatReserve}:inputSummary) =
                         </h4>
                     </div>
                     <div className='section-summary-button'>
-                         <button>BUY NOW</button>
+                         <button onClick={callApiReserve}>BUY NOW</button>
                     </div>
                    
                 </div>

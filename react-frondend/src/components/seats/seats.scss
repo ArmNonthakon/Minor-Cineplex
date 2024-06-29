@@ -40,13 +40,17 @@
             column-gap: 2%;
     
             img.seat-user {
-                background-color: rgb(71, 70, 70);
+                background-color: rgb(65, 65, 65);
                 border-radius: 20px;
+                padding: 2px;
+                width: 22.5px;
+                border: 2px solid white;
             }
             img.seat-reserve{
-                background-color: white;
+                background-color: rgb(226, 200, 98);
                 border-radius: 20px;
-                padding: 3px;
+                padding: 5px;
+                width: 20px;
             }
         }
     }

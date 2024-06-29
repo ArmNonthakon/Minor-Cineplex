@@ -15,6 +15,12 @@ func NewTicketGorm(db *gorm.DB) ports.TicketRepository {
 
 // Reserve seat and recieve ticket
 func (g *GormDB) CreateTicketAndReserveSeat(newTicket domain.Ticket, UserName string, theaterId uuid.UUID, seatReserve []string) (domain.Ticket, error) {
+	for _, seat := range seatReserve {
+		if result := g.CheckSeat(seat, theaterId); !result {
+			return newTicket, fmt.Errorf("CANT RESERVE")
+		}
+
+	}
 	user := domain.User{}
 	if result := g.db.Find(&user, "user_name = ?", UserName); result.Error != nil {
 		return newTicket, result.Error
@@ -26,6 +32,7 @@ func (g *GormDB) CreateTicketAndReserveSeat(newTicket domain.Ticket, UserName st
 	fmt.Print(theaterId)
 	for _, seat := range seatReserve {
 		g.ReserveSeat(seat, theaterId, newTicket.TicketId)
+
 	}
 	ticket, err := g.ResTicketById(newTicket.TicketId)
 	if err != nil {
