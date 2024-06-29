@@ -25,7 +25,6 @@ const Login = () => {
                     setPassword('');
                     setResponse('Login success!!')
                     setIssubmit(true)
-                    setCookie('userName',username)
                     setTimeout(() => {
                         navigate('/');
                     }, 3000);
