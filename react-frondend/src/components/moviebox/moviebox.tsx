@@ -18,7 +18,7 @@ export const MovieBox = ({ title, duration, poster, genre, date }: Input) => {
         return <h4>{tDate.getDay()} {month[tDate.getMonth()]} {tDate.getFullYear()}</h4>
     }
     useEffect(()=>{
-        console.log()
+        
     })
     return (<>
         <Link to={`/movie/${title.replace(/ /g,'_')}`} className='section-moviebox' onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>

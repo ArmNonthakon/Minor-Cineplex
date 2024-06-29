@@ -50,12 +50,12 @@ func NewHttpHandler(db *gorm.DB) (adapters_http.MovieServiceIml, adapters_http.T
 func main() {
 	app := fiber.New()
 	app.Use(cors.New(cors.Config{
-		/*AllowOrigins:     "http://localhost:5173/",
+		AllowOrigins:     "http://localhost:5173/",
 		AllowHeaders:     "Origin, Content-Type, Accept",
-		AllowCredentials: true,*/
-		AllowMethods: "GET, POST, PUT, DELETE, OPTIONS",
+		AllowCredentials: true,
+		AllowMethods:     "GET, POST, PUT, DELETE, OPTIONS",
 	}))
-	db, err := NewDB("postgres")
+	db, err := NewDB("mysql")
 	if err != nil {
 		log.Panic(err)
 	}

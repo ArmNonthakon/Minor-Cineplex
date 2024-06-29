@@ -20,7 +20,6 @@ const LoopRow = memo(({ row }: { row: number }) => {
 
 
 export const Seats = memo(({ row, col ,sendSeat,seats}: Input) => {
-    console.log('recomponent seats')
     const [seatReserving, setSeatReserving] = useState<string[]>([])
     const LoopSeat = ({ row, col }: { row: number, col: number }) => {
         let h = [];

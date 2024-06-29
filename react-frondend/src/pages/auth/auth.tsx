@@ -10,7 +10,6 @@ interface Auth {
 const Auth = ({ state }: Auth) => {
     const navigate = useNavigate()
     useEffect(() => {
-        console.log(getCookie('token'))
         getCookie('token') && navigate('/')
     }, [])
     return (

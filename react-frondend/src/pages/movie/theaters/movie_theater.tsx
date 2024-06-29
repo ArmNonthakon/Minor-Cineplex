@@ -53,7 +53,6 @@ export const Movie_theater = () => {
                 seatReserve = e.SeatAlreadyReserve == null ? [] : e.SeatAlreadyReserve
             }
         });
-        console.log(data?.Theaters)
         return <Seats row={seatRow} col={seatCol} seats={seatReserve}  sendSeat={setSeatsReserve} />;
     }, [data, currentTheater, setSeatsReserve]);
 
