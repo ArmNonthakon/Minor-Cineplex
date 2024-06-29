@@ -2,7 +2,6 @@ import './login.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginApi } from '../../../service/user_api';
 import { useState } from 'react';
-import { setCookie } from 'typescript-cookie';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -72,7 +71,7 @@ const Login = () => {
                 </div>
                 <div className='error' style={{ color: response == "Login success!!" ? "green" : "red" }}>{response && response}</div>
                 <div className='login-button'>
-                    <button type='submit' style={{ backgroundColor: loading && "rgb(147, 196, 239)" }}>
+                    <button type='submit' style={{ backgroundColor: loading && "rgb(247, 155, 155)" }}>
                         {loading ? loading : "Login"}
                     </button>
                     <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
