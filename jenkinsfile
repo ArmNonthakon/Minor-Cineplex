@@ -1,7 +1,0 @@
-pipeline{
-    agent any
-
-    stage('Test'){
-        
-    }
-}
