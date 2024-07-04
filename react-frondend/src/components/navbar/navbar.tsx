@@ -10,7 +10,7 @@ export const Navbar = () => {
                     <img src="/logo.png" width="60px" alt="" />
                     <Link to={"/"}>HOME</Link>
                     <Link to={"/movie"}>MOVIES</Link>
-                    <Link to={"/seat"}>THEATER</Link>
+                    <Link to={"/ticket"}>TICKET</Link>
                 </div>
                 <div className='section-navbar-auth'>
                     <img src="/search.png" width="28px" alt="" />

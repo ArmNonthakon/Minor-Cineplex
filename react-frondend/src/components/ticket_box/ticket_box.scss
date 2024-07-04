@@ -1,0 +1,16 @@
+.section-ticket-box{
+    width: 98%;
+    height: 300px;
+    border: 1px solid rgb(28, 28, 28);
+    border-radius: 20px;
+    background-color: rgb(28, 28, 28);
+    .section-ticket-box-one{
+        background-color: white;
+        width: 40%;
+        height: 100%;
+    }
+    .section-ticket-box-two{
+        background-color: azure;
+        width: 60%;
+    }
+}
