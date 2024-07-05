@@ -1,28 +1,42 @@
+
 import './ticket_box.scss'
 
-export const Ticket_box = () => {
+interface InputTicket {
+    ticketId: string
+    movieTitle: string
+    theaterNumber: string
+    seats: string[]
+    time: string
+}
+export const Ticket_box = ({ ticketId, movieTitle, theaterNumber, seats, time }: InputTicket) => {
+    const TransformTime = ()=>{
+        const date = new Date(time)
+        return <p className='ticket-box-information'>{date.getHours()+ ":" + date.getMinutes}</p>
+    }
     return (
         <>
             <div className="ticket-box">
                 <p className='ticket-box-topic'>Ticket ID</p>
-                <p className='ticket-box-information'>017d14c8-0d49-472f-93a6-23814be9a9c9</p>
+                <p className='ticket-box-information'>{ticketId}</p>
 
                 <div className="ticket-information">
                     <div className='ticket-information-logo'></div>
                     <div className='ticket-information-describe'>
                         <div>
                             <p className='ticket-box-topic'>Movie Title</p>
-                            <p className='ticket-box-information'>Bad boy for life</p>
+                            <p className='ticket-box-information'>{movieTitle}</p>
                         </div>
                         <div>
                             <p className='ticket-box-topic'>Theater</p>
-                            <p className='ticket-box-information'>T3</p></div>
+                            <p className='ticket-box-information'>{theaterNumber}</p></div>
                         <div>
                             <p className='ticket-box-topic'>Seats</p>
-                            <p className='ticket-box-information'>C1 C2 C3 </p></div>
+                            <p className='ticket-box-information'>
+                                {seats.map((e)=>(e))}
+                            </p></div>
                         <div>
                             <p className='ticket-box-topic'>Show Time</p>
-                            <p className='ticket-box-information'>12.30</p></div>
+                            <TransformTime/></div>
                     </div>
                 </div>
             </div>

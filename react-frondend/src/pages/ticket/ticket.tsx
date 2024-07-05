@@ -1,7 +1,23 @@
-import { Ticket_box } from "../../components/ticket_box/ticket_box"
+import { useEffect, useState } from "react"
+import { Ticket_box } from '../../components/ticket_box/ticket_box';
+import { GetTicketByUser } from "../../service/ticket_api"
 import './ticket.scss'
 
 export const Ticket = () => {
+    const [tickets,setTickets] = useState([])
+    const callTicketApiByUserName = async ()=>{
+        try {
+            const response:any = await GetTicketByUser();
+            if (response.status == 202){
+                setTickets(response.data)
+            }
+        } catch (error) {
+            throw error
+        }
+    }
+    useEffect(()=>{
+        callTicketApiByUserName()
+    })
     return (
         <>
             <div className="section-ticket-topic">
@@ -18,10 +34,9 @@ export const Ticket = () => {
                 </div>
             </div>
             <div className="section-ticket">
-                <Ticket_box />
-                <Ticket_box />
-                <Ticket_box />
-                <Ticket_box />
+                {tickets.map((e:any,i)=>(
+                    <Ticket_box key={i} ticketId={e.TicketId} movieTitle={e.MovieTitle} theaterNumber={e.TheaterNumber} seats={e.Seats} time={e.ShowTime}/>
+                ))}
             </div>
         </>
     )

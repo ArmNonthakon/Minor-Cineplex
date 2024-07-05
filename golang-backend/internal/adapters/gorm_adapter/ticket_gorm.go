@@ -49,3 +49,14 @@ func (g *GormDB) ResTicketById(id uuid.UUID) (domain.Ticket, error) {
 	}
 	return ticket, nil
 }
+func (g *GormDB) ResTicketByUserName(userName string) ([]domain.Ticket, error) {
+	ticket := []domain.Ticket{}
+	user := domain.User{}
+	if result := g.db.Select("user_id").First(&user); result.Error != nil {
+		return ticket, result.Error
+	}
+	if result := g.db.Preload("Movie").Preload("Seats.Theater").Preload("User").Find(&ticket, "user_id = ?", user.UserId); result.Error != nil {
+		return ticket, result.Error
+	}
+	return ticket, nil
+}

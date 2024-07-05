@@ -36,3 +36,12 @@ func (r TicketRepositoryIml) ReqGetTicketById(id uuid.UUID) (domain.Ticket, erro
 	}
 	return ticket, err
 }
+
+// Get ticket by username
+func (r TicketRepositoryIml) ReqGetTicketByUserName(userName string) ([]domain.Ticket, error) {
+	ticket, err := r.repo.ResTicketByUserName(userName)
+	if err != nil {
+		return ticket, err
+	}
+	return ticket, err
+}
