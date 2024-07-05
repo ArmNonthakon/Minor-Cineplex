@@ -8,6 +8,7 @@ import { Movie } from './pages/movie/movie';
 import { Movie_theater } from './pages/movie/theaters/movie_theater';
 import Auth from './pages/auth/auth';
 import { Ticket } from './pages/ticket/ticket';
+import { Ticket_id } from './pages/ticket/ticket_id/ticket_id';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route path='/login' element={<Auth state='login'/>}/> 
               <Route path='/signup' element={<Auth state='register'/>}/>
               <Route path='/ticket' element={<Ticket/>} />
+              <Route path='/ticket/:id' element={<Ticket_id/>} />
             </Routes> 
           </div>
           <div className='Footerr'>

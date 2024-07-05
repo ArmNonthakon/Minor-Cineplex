@@ -58,6 +58,7 @@ export const Movie_theater = () => {
 
     useEffect(() => {
         callApiMovie();
+        window.scrollTo(0, 0);
     }, [param.id]);
 
     return (

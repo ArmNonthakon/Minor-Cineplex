@@ -141,6 +141,10 @@
 }
 @media screen and (max-width: 1240px) {
     .section-summary {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         top: 30px;
         position: relative;
         .section-summary-box{
@@ -153,5 +157,10 @@
                 }
             }
         }
+    }
+    .section-summary-response {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

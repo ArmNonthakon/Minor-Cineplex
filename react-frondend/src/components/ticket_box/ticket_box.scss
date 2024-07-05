@@ -1,16 +1,72 @@
-.section-ticket-box{
-    width: 98%;
-    height: 300px;
-    border: 1px solid rgb(28, 28, 28);
-    border-radius: 20px;
-    background-color: rgb(28, 28, 28);
-    .section-ticket-box-one{
-        background-color: white;
-        width: 40%;
-        height: 100%;
+.ticket-box{
+    padding: 16px 18px;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: black;
+    .ticket-information{
+        display: flex;
+        .ticket-information-logo{
+            height: 145px;
+            width: 20%;
+            border-radius: 20px;
+            background-image: url("/logo.png");
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 10px;
+        }
+        .ticket-information-describe{
+            width: 80%;
+            height: 160px;
+            display: grid;
+            padding-left: 20px;
+            grid-template-columns: repeat(2,45%);
+            justify-content: space-between;
+            align-items: center;
+            div{
+                height: 50px;
+            }
+        }
     }
-    .section-ticket-box-two{
-        background-color: azure;
-        width: 60%;
+    
+}
+p.ticket-box-topic{
+    color: rgb(230, 81, 81);
+    font-size: 0.9em;
+}
+p.ticket-box-information{
+    font-size: 0.78em;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1400px) {
+    .ticket-box{
+        .ticket-information{
+            .ticket-information-logo{
+                background-size: 100%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 1100px) {
+    .ticket-box{
+        .ticket-information{
+            .ticket-information-logo{
+                background-size: 110%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 800px) {
+    .ticket-box{
+        .ticket-information{
+            .ticket-information-logo{
+                background-size: 130%;
+            }
+        }
     }
 }

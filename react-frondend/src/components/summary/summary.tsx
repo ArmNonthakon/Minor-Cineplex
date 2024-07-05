@@ -19,8 +19,9 @@ export const Summary = ({ MovieId, TheaterId, title, poster, duration, time, sea
     const callApiReserve = async () => {
         setLoading('Booking tickets...')
         try {
-            const response = await ReserveSeat(MovieId, TheaterId, seatReserve);
-            if (response == 202) {
+            const response:any = await ReserveSeat(MovieId, TheaterId, seatReserve);
+            if (response.status == 202) {
+                console.log(response.data)
                 setResponse('Successfully booked tickets!!!')
                 setTimeout(() => {
                     location.reload()
