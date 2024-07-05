@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { ReserveSeat } from '../../service/ticket_api'
 import './summary.scss'
 import { ToUpperFirstLetter } from '../../utils/utils_string';
+import { useNavigate } from 'react-router-dom';
 
 interface inputSummary {
     MovieId: string
@@ -16,6 +17,7 @@ interface inputSummary {
 export const Summary = ({ MovieId, TheaterId, title, poster, duration, time, seatReserve }: inputSummary) => {
     const [response, setResponse] = useState('');
     const [loading, setLoading] = useState('');
+    const navigate = useNavigate()
     const callApiReserve = async () => {
         setLoading('Booking tickets...')
         try {
@@ -24,7 +26,7 @@ export const Summary = ({ MovieId, TheaterId, title, poster, duration, time, sea
                 console.log(response.data)
                 setResponse('Successfully booked tickets!!!')
                 setTimeout(() => {
-                    location.reload()
+                    navigate('/ticket/'+ response.data.TicketId)
                 }, 2000);
             }
             else {

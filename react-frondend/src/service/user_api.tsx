@@ -8,7 +8,7 @@ interface InputRegister {
     email: string
     password: string
 }
-const url = 'http://127.0.0.1:3000/'
+const url = '/api/'
 export const LoginApi = async ({ username, password }: InputLogin) => {
     try {
         const response = await axios.post(`${url}login`, {
