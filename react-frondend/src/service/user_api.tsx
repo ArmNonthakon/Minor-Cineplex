@@ -3,20 +3,19 @@ interface InputLogin {
     username: string
     password: string
 }
-interface InputRegister{
-    username :string
+interface InputRegister {
+    username: string
     email: string
-    password:string
+    password: string
 }
-
 const url = '/api/'
 export const LoginApi = async ({ username, password }: InputLogin) => {
     try {
         const response = await axios.post(`${url}login`, {
-            username: username,  
-            password: password   
-        },{
-            withCredentials:true
+            username: username,
+            password: password
+        }, {
+            withCredentials: true
         })
         return response.status;
     } catch (error) {
@@ -24,11 +23,11 @@ export const LoginApi = async ({ username, password }: InputLogin) => {
         throw error;
     }
 };
-export const regisApi = async ({username,email,password}: InputRegister) => {
+export const regisApi = async ({ username, email, password }: InputRegister) => {
     try {
         const response = await axios.post(`${url}register`, {
             username: username,
-            email: email,  
+            email: email,
             password: password,
         });
         return response.status

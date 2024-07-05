@@ -1,7 +1,7 @@
 .section-movie_theater-movie {
     margin-bottom: 20px;
     display: flex;
-    width: 55%;
+    width: 60%;
     height: 270px;
     background-color: rgb(54, 54, 54);
     border-radius: 20px;
@@ -64,4 +64,18 @@
         }
     }
 
+}
+@media screen and (max-width: 1370px) {
+    .section-movie_theater-movie{
+        width: 810px;
+        
+    }
+}
+@media screen and (max-width: 1240px) {
+    .section-movie_theater-movie{
+        width: 100%;
+        .section-movie_theater-movie-poster{
+            width: 230px;
+        }
+    }
 }

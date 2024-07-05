@@ -20,7 +20,7 @@ interface MovieData {
 export const Home = () => {
     const [data, setData] = useState<MovieData[]>([]);
     const [genre, setGenre] = useState<string[]>([]);
-
+    const [innerWidth,setInnerWidth] = useState(window.innerWidth)
     const callApiMovie = async () => {
         try {
             const response = await GetMovie();
@@ -35,13 +35,17 @@ export const Home = () => {
             setData([]);
         }
     };
-
+    window.addEventListener('resize', ()=>{
+        setInnerWidth(window.innerWidth)
+    });
+   
     const getMoviesByGenre = (inputGenre: string) => {
         return data.filter((item) => item.MovieGenre === inputGenre);
     }
 
     useEffect(() => {
         callApiMovie();
+        console.log(innerWidth)
     }, []);
 
     return (
@@ -51,7 +55,7 @@ export const Home = () => {
                     <p className='toppic-genre'>{item}</p>
                     <div className='section-home'>
                         <Swiper
-                            slidesPerView={5.4}
+                            slidesPerView={innerWidth <= 650 ? 2.1 : innerWidth <= 1000 ? 3.3 : innerWidth <= 1151 ? 4.4 : 5.4 }
                             spaceBetween={35}
                             className="mySwiper"
                         >

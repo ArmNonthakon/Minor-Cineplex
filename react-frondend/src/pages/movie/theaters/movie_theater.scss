@@ -5,3 +5,12 @@
     
 
 }
+@media screen and (max-width: 1240px) {
+    .section-movie_theater{
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

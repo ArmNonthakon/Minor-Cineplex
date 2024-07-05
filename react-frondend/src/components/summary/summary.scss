@@ -1,7 +1,7 @@
 .section-summary {
     position: absolute;
     right: 80px;
-    top: 120px;
+    top: 110px;
 
     .section-summary-box {
         border: 2px solid white;
@@ -10,38 +10,46 @@
         width: 400px;
         height: auto;
         padding-bottom: 20px;
-        .section-summary-movie{
+
+        .section-summary-movie {
             margin: 12px;
             display: flex;
-            .section-summary-poster{
+
+            .section-summary-poster {
                 width: 120px;
                 height: 180px;
                 border-radius: 20px;
                 margin-right: 20px;
                 background-size: cover;
             }
-            .section-summary-describe{
+
+            .section-summary-describe {
                 margin-top: 15px;
                 font-size: 17px;
-                .summary-describe{
+
+                .summary-describe {
                     margin-top: 20px;
                     display: flex;
-                    p{
+
+                    p {
                         margin-left: 5px;
                     }
                 }
             }
         }
-        .section-summary-round{ 
+
+        .section-summary-round {
             margin: 0px 20px;
             margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            p{
+
+            p {
                 font-size: 19px;
             }
-            div{
+
+            div {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -54,52 +62,96 @@
                 height: 40px;
             }
         }
-        .section-summary-seats{
+
+        .section-summary-seats {
             font-size: 19px;
             margin: 0px 20px;
             margin-top: 10px;
             display: flex;
             align-items: start;
             justify-content: space-between;
-            h3{
+
+            h3 {
                 font-size: 20px;
             }
-            h4{
+
+            h4 {
                 font-size: 17px;
             }
-            h4:first-child{
-                
+
+            h4:first-child {
+
                 width: 170px;
             }
-            h4:last-child{
+
+            h4:last-child {
                 font-size: 19px;
             }
         }
-        .section-summary-button{
+
+        .section-summary-button {
             margin: 0px 20px;
             margin-top: 15px;
             width: 100%;
-            button{
+            button {
                 border-radius: 10px;
                 width: 90%;
                 height: 40px;
                 background-color: rgb(252, 200, 68);
             }
-            button:hover{
+
+            button:hover {
                 cursor: pointer;
                 background-color: rgb(254, 221, 139);
             }
         }
-        
+
     }
-    .section-summary-response{
-        
+
+    .section-summary-response {
         width: 100%;
         padding: 20px;
         padding-left: 40px;
-        p{
-            margin-left: 35px;
+        p {
             font-size: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .section-summary {
+        right: 60px;
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    .section-summary {
+        right: 40px;
+    }
+}
+@media screen and (max-width: 1300px) {
+    .section-summary {
+        right: 20px;
+    }
+}
+@media screen and (max-width: 1250px) {
+    .section-summary {
+        right: 10px;
+    }
+}
+@media screen and (max-width: 1240px) {
+    .section-summary {
+        top: 30px;
+        position: relative;
+        .section-summary-box{
+            width: 600px;
+            .section-summary-button{
+                margin: 0 5px;
+                margin-top: 15px;
+                button{
+                    width: 98%;
+                }
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ReserveSeat } from '../../service/ticket_api'
 import './summary.scss'
+import { ToUpperFirstLetter } from '../../utils/utils_string';
 
 interface inputSummary {
     MovieId: string
@@ -42,14 +43,14 @@ export const Summary = ({ MovieId, TheaterId, title, poster, duration, time, sea
         <>
 
             <div className="section-summary">
-                <h2 style={{ color: "white", marginBottom: "20px" }}>Summary</h2>
+                <h2 style={{ color: "white", marginBottom: "10px" }}>Summary</h2>
                 <div className='section-summary-box'>
                     <div className='section-summary-movie'>
                         <div className='section-summary-poster' style={{ backgroundImage: `url("/movie/${poster}")`, }}></div>
                         <div className='section-summary-describe'>
-                            <h3>{title}</h3>
+                            <h3>{ToUpperFirstLetter(title)}</h3>
                             <div className='summary-describe'>
-                                <img src="/clock.png" width="20px" alt="" />
+                                <img src="/clock.png" width="23px" alt="" />
                                 <p>{duration} minute</p>
                             </div>
 

@@ -16,3 +16,13 @@
   row-gap: 20px;
   justify-content: center;
 }
+@media screen and (max-width: 1152px) {
+  .section-movie {
+    grid-template-columns: repeat(4, 20%);
+  }
+}
+@media screen and (max-width: 1000px) {
+  .section-movie {
+    grid-template-columns: repeat(3, 26.666%);
+  }
+}
