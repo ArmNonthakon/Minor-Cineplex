@@ -11,7 +11,11 @@ interface InputTicket {
 export const Ticket_box = ({ ticketId, movieTitle, theaterNumber, seats, time }: InputTicket) => {
     const TransformTime = ()=>{
         const date = new Date(time)
-        return <p className='ticket-box-information'>{date.getHours()+ ":" + date.getMinutes()}</p>
+        if (date.getMinutes() < 10) {
+            return <p className='ticket-box-information'>{date.getHours() + ":0" + date.getMinutes()}</p>
+        } else {
+            return <p className='ticket-box-information'>{date.getHours() + ":" + date.getMinutes()}</p>
+        }   
     }
     return (
         <>
