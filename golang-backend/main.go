@@ -23,7 +23,7 @@ func NewDB(server string) (*gorm.DB, error) {
 		DB, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 		return DB, err
 	} else {
-		dsn = "user=postgres.snpblspofpidyfveqljs password=Ninjaarm-20032546 host=aws-0-ap-southeast-1.pooler.supabase.com port=6543 dbname=test sslmode=disable TimeZone=Asia/Shanghai"
+		dsn = "user=postgres.snpblspofpidyfveqljs password=Ninjaarm-20032546 host=aws-0-ap-southeast-1.pooler.supabase.com port=6543 dbname=minorcineplex sslmode=disable TimeZone=Asia/Shanghai"
 		DB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 		return DB, err
 	}
@@ -55,7 +55,7 @@ func main() {
 		AllowCredentials: true,*/
 		AllowMethods: "GET, POST, PUT, DELETE, OPTIONS",
 	}))
-	db, err := NewDB("po")
+	db, err := NewDB("postgres")
 	if err != nil {
 		log.Panic(err)
 	}

@@ -1,23 +1,34 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { Ticket_box } from '../../components/ticket_box/ticket_box';
-import { GetTicketByUser } from "../../service/ticket_api"
-import './ticket.scss'
+import { GetTicketByUser } from "../../service/ticket_api";
+import './ticket.scss';
+
+interface Ticket {
+    TicketId: string;
+    MovieTitle: string;
+    TheaterNumber: string;
+    Seats: string[];
+    ShowTime: string;
+}
 
 export const Ticket = () => {
-    const [tickets,setTickets] = useState([])
-    const callTicketApiByUserName = async ()=>{
+    const [tickets, setTickets] = useState<Ticket[]>([]);
+
+    const callTicketApiByUserName = async () => {
         try {
-            const response:any = await GetTicketByUser();
-            if (response.status == 202){
-                setTickets(response.data)
+            const response: any = await GetTicketByUser();
+            if (response.status === 202) {
+                setTickets(Array.isArray(response.data) ? response.data : []);
             }
         } catch (error) {
-            throw error
+            console.error("Error fetching tickets:", error);
         }
-    }
-    useEffect(()=>{
-        callTicketApiByUserName()
-    })
+    };
+
+    useEffect(() => {
+        callTicketApiByUserName();
+    }, []); 
+
     return (
         <>
             <div className="section-ticket-topic">
@@ -25,7 +36,6 @@ export const Ticket = () => {
                 <div>
                     <h1>Your Ticket</h1>
                 </div>
-                
                 <div>
                     <form action="">
                         <input type="text" placeholder="TICKET ID" name="" id="" />
@@ -34,10 +44,17 @@ export const Ticket = () => {
                 </div>
             </div>
             <div className="section-ticket">
-                {tickets.map((e:any,i)=>(
-                    <Ticket_box key={i} ticketId={e.TicketId} movieTitle={e.MovieTitle} theaterNumber={e.TheaterNumber} seats={e.Seats} time={e.ShowTime}/>
+                {tickets.map((e: Ticket, i: number) => (
+                    <Ticket_box
+                        key={i}
+                        ticketId={e.TicketId}
+                        movieTitle={e.MovieTitle}
+                        theaterNumber={e.TheaterNumber}
+                        seats={e.Seats}
+                        time={e.ShowTime}
+                    />
                 ))}
             </div>
         </>
-    )
-}
+    );
+};

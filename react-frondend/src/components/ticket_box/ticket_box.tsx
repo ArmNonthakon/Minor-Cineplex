@@ -11,7 +11,7 @@ interface InputTicket {
 export const Ticket_box = ({ ticketId, movieTitle, theaterNumber, seats, time }: InputTicket) => {
     const TransformTime = ()=>{
         const date = new Date(time)
-        return <p className='ticket-box-information'>{date.getHours()+ ":" + date.getMinutes}</p>
+        return <p className='ticket-box-information'>{date.getHours()+ ":" + date.getMinutes()}</p>
     }
     return (
         <>
@@ -32,7 +32,7 @@ export const Ticket_box = ({ ticketId, movieTitle, theaterNumber, seats, time }:
                         <div>
                             <p className='ticket-box-topic'>Seats</p>
                             <p className='ticket-box-information'>
-                                {seats.map((e)=>(e))}
+                                {seats.map((e)=>(e + " "))}
                             </p></div>
                         <div>
                             <p className='ticket-box-topic'>Show Time</p>
