@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"os"
 
 	adapters_gorm "github.com/ArmNonthakon/Minor-Cineplex/internal/adapters/gorm_adapter"
 	adapters_http "github.com/ArmNonthakon/Minor-Cineplex/internal/adapters/http_adapter"
@@ -24,7 +23,7 @@ func NewDB(server string) (*gorm.DB, error) {
 		DB, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 		return DB, err
 	} else {
-		dsn = os.Getenv("postgres_database")
+		dsn = "user=postgres.snpblspofpidyfveqljs password=Ninjaarm-20032546 host=aws-0-ap-southeast-1.pooler.supabase.com port=6543 dbname=minorcineplex sslmode=disable TimeZone=Asia/Shanghai"
 		DB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 		return DB, err
 	}
