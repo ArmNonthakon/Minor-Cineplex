@@ -20,6 +20,9 @@ export const Ticket = () => {
             if (response.status === 202) {
                 setTickets(Array.isArray(response.data) ? response.data : []);
             }
+            else{
+                console.log(response.data)
+            }
         } catch (error) {
             console.error("Error fetching tickets:", error);
         }

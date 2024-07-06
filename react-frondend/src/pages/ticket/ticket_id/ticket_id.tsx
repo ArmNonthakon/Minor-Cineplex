@@ -22,6 +22,9 @@ export const Ticket_id = () => {
             if (response.status === 202) {
                 setTicket(response.data);
             }
+            else{
+                console.log(response.data)
+            }
         } catch (error) {
             console.error("Error fetching ticket:", error);
         }

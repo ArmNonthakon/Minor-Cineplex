@@ -30,9 +30,11 @@ export const Summary = ({ MovieId, TheaterId, title, poster, duration, time, sea
                 }, 2000);
             }
             else {
+                console.log(response.data)
                 setResponse('Unsuccessfully booked tickets!!!')
             }
         } catch (error) {
+            console.log(error)
             setResponse('Unsuccessfully booked tickets!!!')
             throw error
         } finally {

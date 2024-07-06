@@ -25,7 +25,7 @@ func (h *TicketServiceIml) ReserveTicket(c *fiber.Ctx) error {
 	}
 	ticket, err := h.service.ReqReserveSeat(input)
 	if err != nil {
-		return c.Status(fiber.StatusNotAcceptable).JSON("Seats have already reserved or incorrect input!!")
+		return c.Status(fiber.StatusNotAcceptable).JSON(err)
 	}
 	resultSeat := utils.SliceSeat(ticket)
 	return c.Status(fiber.StatusAccepted).JSON(fiber.Map{
@@ -45,7 +45,7 @@ func (h *TicketServiceIml) GetTicketById(c *fiber.Ctx) error {
 	}
 	ticket, err := h.service.ReqGetTicketById(input.TicketId)
 	if err != nil {
-		return c.SendStatus(fiber.StatusNotFound)
+		return c.Status(fiber.StatusNotFound).JSON(err)
 	}
 	checkUUID := uuid.UUID{}
 	if ticket.TicketId == checkUUID {
@@ -68,7 +68,7 @@ func (h *TicketServiceIml) GetTicketByUserName(c *fiber.Ctx) error {
 	}
 	ticket, err := h.service.ReqGetTicketByUserName(input.UserName)
 	if err != nil {
-		return c.SendStatus(fiber.StatusNotFound)
+		return c.Status(fiber.StatusNotFound).JSON(err)
 	}
 	processedData := make([]map[string]interface{}, len(ticket))
 	for i, data := range ticket {
